@@ -3,7 +3,7 @@ import type {BsToastElement} from './bs-toast-element'
 export class BsToastContainerElement extends HTMLElement {
   connectedCallback(): void {
     const div = document.createElement('div')
-    div.classList.add('toast-container', 'position-fixed', 'p-3', 'top-0', 'end-0')
+    div.classList.add('toast-container', 'position-fixed', 'p-3', 'top-0', 'end-0', 'vstack', 'gap-1')
     div.style.zIndex = '1030'
     this.append(div)
   }
