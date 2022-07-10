@@ -9,6 +9,15 @@
     <main class="container py-4 vstack gap-4">
       <h1>&lt;bs-toast&gt; element</h1>
       <div>
+        <h3>Light</h3>
+<pre class="bg-light text-dark">
+<code>
+  openToast('Hello, world!', { color: 'dark', bgColor: 'light', delay: 5000 })
+</code>
+</pre>
+        <button type="button" class="btn btn-light" id="show-light">Show</button>
+      </div>
+      <div>
         <h3>Success</h3>
 <pre class="bg-light text-dark">
 <code>
@@ -27,25 +36,32 @@
         <button type="button" class="btn btn-danger" id="show-danger">Show</button>
       </div>
       <div>
-        <h3>Custom</h3>
+        <h3>Custom content</h3>
 <pre class="bg-light text-dark">
 <code>
   const content = document.createElement('div')
   content.innerHTML = `
-    &lt;div class="vstack gap-2"&gt;
-      &lt;div class="hstack gap-2"&gt;
-        &lt;img class="rounded-pill" src="https://placehold.jp/40/3d4070/ffffff/150x150.png?text=John" style="width: 24px; height: 24px;"&gt;
+    &lt;div class=&quot;hstack align-items-start gap-2&quot;&gt;
+      &lt;img class=&quot;rounded-pill&quot; src=&quot;https://placehold.jp/40/3d4070/ffffff/150x150.png?text=John&quot; style=&quot;width: 32px; height: 32px;&quot;&gt;
+      &lt;div class=&quot;vstack gap-2&quot;&gt;
         &lt;strong&gt;John&lt;/strong&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-        Hello, world! This is a toast message.
-        Hello, world! This is a toast message.
-        Hello, world! This is a toast message.
+        &lt;div class=&quot;text-muted&quot;&gt;
+          Hello, world! This is a toast message.
+          Hello, world! This is a toast message.
+          Hello, world! This is a toast message.
+        &lt;/div&gt;
+        &lt;div class=&quot;hstack gap-2&quot;&gt;
+          &lt;button type=&quot;button&quot; class=&quot;btn btn-sm btn-primary&quot;&gt;Accept&lt;/button&gt;
+          &lt;button type=&quot;button&quot; class=&quot;btn btn-sm btn-outline-secondary&quot;&gt;Decline&lt;/button&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   `
-  const hide = openToast(content, { color: 'dark', bgColor: 'light', delay: 20000, hideCloseButton: true })
-  content.addEventListener('click', () => hide())
+  const hide = openToast(content, { color: &#39;dark&#39;, bgColor: &#39;light&#39;, delay: 20000, hideCloseButton: true })
+  content.addEventListener(&#39;click&#39;, (event) =&gt; {
+    if (event.target.matches(&#39;button&#39;)) {
+      hide()
+    }
+  })
 </code>
 </pre>
         <button type="button" class="btn btn-light" id="show-custom">Show</button>
@@ -55,6 +71,9 @@
       // import { openToast } from 'https://cdn.skypack.dev/@sonicgarden/bs-toast-element'
       import { openToast } from './src/index.ts'
 
+      document.querySelector('#show-light').addEventListener('click', () => {
+        openToast('Hello, world!', { color: 'dark', bgColor: 'light', delay: 5000 })
+      })
       document.querySelector('#show-success').addEventListener('click', () => {
         openToast('Hello, world!', { bgColor: 'success', delay: 5000 })
       })
@@ -64,20 +83,27 @@
       document.querySelector('#show-custom').addEventListener('click', () => {
         const content = document.createElement('div')
         content.innerHTML = `
-          <div class="vstack gap-2">
-            <div class="hstack gap-2">
-              <img class="rounded-pill" src="https://placehold.jp/40/3d4070/ffffff/150x150.png?text=John" style="width: 24px; height: 24px;">
+          <div class="hstack align-items-start gap-2">
+            <img class="rounded-pill" src="https://placehold.jp/40/3d4070/ffffff/150x150.png?text=John" style="width: 32px; height: 32px;">
+            <div class="vstack gap-2">
               <strong>John</strong>
-            </div>
-            <div>
-              Hello, world! This is a toast message.
-              Hello, world! This is a toast message.
-              Hello, world! This is a toast message.
+              <div class="text-muted">
+                Hello, world! This is a toast message.
+                Hello, world! This is a toast message.
+                Hello, world! This is a toast message.
+              </div>
+              <div class="hstack gap-2">
+                <button type="button" class="btn btn-sm btn-primary">Accept</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Decline</button>
             </div>
           </div>
         `
         const hide = openToast(content, { color: 'dark', bgColor: 'light', delay: 20000, hideCloseButton: true })
-        content.addEventListener('click', () => hide())
+        content.addEventListener('click', (event) => {
+          if (event.target.matches('button')) {
+            hide()
+          }
+        })
       })
     </script>
   </body>
