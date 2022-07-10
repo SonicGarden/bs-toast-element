@@ -3,7 +3,7 @@
 ## Installation
 
 ```
-$ yarn add https://github.com/SonicGarden/bs-toast-element.git#v0.2.0
+$ npm install @sonicgarden/bs-toast-element
 ```
 
 ## Usage
