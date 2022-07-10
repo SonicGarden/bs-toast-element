@@ -2,10 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width user-scalable=no initial-scale=1.0 minimum-scale=1.0 maximum-scale=1.0">
     <title>bs-toast-element demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   </head>
-  <body class="bg-dark text-white">
+  <body>
     <main class="container py-4 vstack gap-4">
       <h1>&lt;bs-toast&gt; element</h1>
       <div>
@@ -15,7 +16,7 @@
   openToast('Hello, world!', { color: 'dark', bgColor: 'light', delay: 5000 })
 </code>
 </pre>
-        <button type="button" class="btn btn-light" id="show-light">Show</button>
+        <button type="button" class="btn btn-secondary" id="show-light">Show</button>
       </div>
       <div>
         <h3>Success</h3>
@@ -34,6 +35,15 @@
 </code>
 </pre>
         <button type="button" class="btn btn-danger" id="show-danger">Show</button>
+      </div>
+      <div>
+        <h3>Position</h3>
+<pre class="bg-light text-dark">
+<code>
+  openToast('Hello, world!', { color: 'white', bgColor: 'dark', delay: 1500, position: 'bottom-center' })
+</code>
+</pre>
+        <button type="button" class="btn btn-info" id="show-position">Show</button>
       </div>
       <div>
         <h3>Custom content</h3>
@@ -64,7 +74,7 @@
   })
 </code>
 </pre>
-        <button type="button" class="btn btn-light" id="show-custom">Show</button>
+        <button type="button" class="btn btn-secondary" id="show-custom">Show</button>
       </div>
     </main>
     <script type="module">
@@ -79,6 +89,9 @@
       })
       document.querySelector('#show-danger').addEventListener('click', () => {
         openToast('Error!', { bgColor: 'danger', delay: 20000 })
+      })
+      document.querySelector('#show-position').addEventListener('click', () => {
+        openToast('Hello, world!', { color: 'white', bgColor: 'dark', delay: 1500, position: 'bottom-center' })
       })
       document.querySelector('#show-custom').addEventListener('click', () => {
         const content = document.createElement('div')

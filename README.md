@@ -14,6 +14,8 @@ import { openToast } from '@sonicgarden/bs-toast-element'
 openToast('Hello, world', { bgColor: 'success', delay: 5000 })
 ```
 
+Refer to the [type definitions](https://github.com/SonicGarden/bs-toast-element/blob/main/types/helpers.d.ts) for more options.
+
 ## Browser support
 
 Browsers without native [custom element support][support] require a [polyfill][].
