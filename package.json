@@ -1,6 +1,6 @@
 {
   "name": "@sonicgarden/bs-toast-element",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "module": "dist/bs-toast-element.es.js",
   "type": "module",
   "types": "types/index.d.ts",
@@ -15,7 +15,7 @@
     "lint": "eslint . --ext .ts,.js",
     "prebuild": "npm run clean && npm run lint && mkdir dist",
     "build": "tsc &&  vite build",
-    "dev": "vite",
+    "dev": "vite --open",
     "prepublishOnly": "npm run build"
   },
   "prettier": "@github/prettier-config",

@@ -11,15 +11,24 @@ const getToastContainer = (): BsToastContainerElement => {
 }
 
 type OpenOptions = {
-  bgColor?: 'success' | 'danger' | 'warning' | 'info'
+  color?: 'white' | 'black' | 'dark' | 'primary' | 'success' | 'info' | 'warning' | 'danger'
+  bgColor?: 'success' | 'danger' | 'warning' | 'info' | 'primary' | 'secondary' | 'light' | 'dark'
   delay?: number
+  hideCloseButton?: boolean
 }
 
-export const openToast = (content: string | HTMLElement, options: OpenOptions = {}) => {
+type Hide = () => void
+
+export const openToast = (content: string | HTMLElement, options: OpenOptions = {}): Hide => {
   const toast = document.createElement('bs-toast') as BsToastElement
+
+  if (options.color) toast.setAttribute('color', options.color)
   if (options.bgColor) toast.setAttribute('bg-color', options.bgColor)
   if (options.delay) toast.setAttribute('delay', options.delay.toString())
+  if (options.hideCloseButton) toast.setAttribute('hide-close-button', '')
 
   toast.content = content
   getToastContainer().add(toast)
+
+  return () => toast.hide()
 }

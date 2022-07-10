@@ -5,22 +5,11 @@ const toastState = new WeakMap<BsToastElement, Toast>()
 
 export class BsToastElement extends HTMLElement {
   static get observedAttributes(): string[] {
-    return ['bg-color', 'delay']
+    return ['color', 'bg-color', 'delay', 'hide-close-button']
   }
 
   connectedCallback(): void {
-    // eslint-disable-next-line github/no-inner-html
-    this.innerHTML = `
-      <div class="toast align-items-center text-white ${this.bgClassName}" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="d-flex">
-          <div class="toast-body">
-            ${this.content}
-          </div>
-          <button type="button" class="btn-close btn-close-white me-2 m-auto" aria-label="Close"></button>
-        </div>
-      </div>
-    `
-
+    this.render()
     this.addEventListener('hidden.bs.toast', this.destroy)
     // NOTE: Do not use `data-bs-dismiss` as it may be called twice
     this.addEventListener('click', this.handleClickClose)
@@ -34,6 +23,36 @@ export class BsToastElement extends HTMLElement {
     this.removeEventListener('click', this.handleClickClose)
   }
 
+  private render() {
+    // eslint-disable-next-line github/no-inner-html
+    this.innerHTML = `
+      <div
+        class="toast align-items-center text-${this.color} bg-${this.bgColor}"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="d-flex">
+          <div class="toast-body">
+          </div>
+          ${
+            this.hideCloseButton
+              ? ''
+              : // eslint-disable-next-line github/unescaped-html-literal
+                `<button type="button" class="btn-close btn-close-${this.color} me-2 m-auto" aria-label="Close"></button>`
+          }
+        </div>
+      </div>
+    `
+
+    const body = this.querySelector('.toast-body')!
+    if (this.content instanceof HTMLElement) {
+      body.append(this.content)
+    } else {
+      body.textContent = this.content
+    }
+  }
+
   show() {
     const element = this.querySelector<HTMLDivElement>('.toast')
     if (!element) return
@@ -43,11 +62,15 @@ export class BsToastElement extends HTMLElement {
     toastState.set(this, toast)
   }
 
+  hide() {
+    const toast = toastState.get(this)
+    toast?.hide()
+  }
+
   handleClickClose = (event: Event) => {
     if (!(event.target instanceof HTMLButtonElement && event.target.classList.contains('btn-close'))) return
 
-    const toast = toastState.get(this)
-    toast?.hide()
+    this.hide()
   }
 
   destroy = () => {
@@ -56,9 +79,16 @@ export class BsToastElement extends HTMLElement {
     this.remove()
   }
 
-  get bgClassName(): string {
-    const bgColor = this.getAttribute('bg-color') ?? 'primary'
-    return `bg-${bgColor}`
+  get bgColor(): string {
+    return this.getAttribute('bg-color') ?? 'primary'
+  }
+
+  get color(): string {
+    return this.getAttribute('color') ?? 'white'
+  }
+
+  get hideCloseButton(): boolean {
+    return this.hasAttribute('hide-close-button') ?? false
   }
 
   get options(): Partial<Toast.Options> {
@@ -67,8 +97,7 @@ export class BsToastElement extends HTMLElement {
   }
 
   get content(): string | HTMLElement {
-    const content = contentState.get(this) || ''
-    return content instanceof HTMLElement ? content.outerHTML : content
+    return contentState.get(this) || ''
   }
 
   set content(value: string | HTMLElement) {

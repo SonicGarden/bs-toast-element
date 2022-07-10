@@ -3,10 +3,14 @@ export declare class BsToastElement extends HTMLElement {
     static get observedAttributes(): string[];
     connectedCallback(): void;
     disconnectedCallback(): void;
+    private render;
     show(): void;
+    hide(): void;
     handleClickClose: (event: Event) => void;
     destroy: () => void;
-    get bgClassName(): string;
+    get bgColor(): string;
+    get color(): string;
+    get hideCloseButton(): boolean;
     get options(): Partial<Toast.Options>;
     get content(): string | HTMLElement;
     set content(value: string | HTMLElement);
