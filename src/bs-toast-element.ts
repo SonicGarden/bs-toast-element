@@ -1,4 +1,4 @@
-import {Toast} from 'bootstrap'
+import Toast from 'bootstrap/js/dist/toast'
 
 const contentState = new WeakMap<BsToastElement, string | HTMLElement>()
 const toastState = new WeakMap<BsToastElement, Toast>()

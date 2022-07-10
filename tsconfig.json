@@ -8,11 +8,14 @@
     ],
     "strict": true,
     "declaration": true,
-    "outDir": "dist",
-    "rootDir": "src",
+    "emitDeclarationOnly": true,
+    "outDir": "./types",
     "removeComments": true,
     "preserveConstEnums": true,
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
-  }
+    "allowSyntheticDefaultImports": true,
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
 }

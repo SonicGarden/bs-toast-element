@@ -1,4 +1,4 @@
-import { Toast } from 'bootstrap';
+import Toast from 'bootstrap/js/dist/toast';
 export declare class BsToastElement extends HTMLElement {
     static get observedAttributes(): string[];
     connectedCallback(): void;

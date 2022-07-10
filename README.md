@@ -3,7 +3,7 @@
 ## Installation
 
 ```
-$ yarn add https://github.com/SonicGarden/bs-toast-element.git#v0.1.0
+$ yarn add https://github.com/SonicGarden/bs-toast-element.git#v0.2.0
 ```
 
 ## Usage
@@ -30,7 +30,7 @@ Browsers without native [custom element support][support] require a [polyfill][]
 
 ```
 pnpm i
-pnpm start
+pnpm dev
 ```
 
 ## License
