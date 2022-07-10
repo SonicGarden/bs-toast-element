@@ -16,12 +16,14 @@ export class BsToastElement extends HTMLElement {
           <div class="toast-body">
             ${this.content}
           </div>
-          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" aria-label="Close"></button>
         </div>
       </div>
     `
 
     this.addEventListener('hidden.bs.toast', this.destroy)
+    // NOTE: Do not use `data-bs-dismiss` as it may be called twice
+    this.addEventListener('click', this.handleClickClose)
     this.show()
   }
 
@@ -29,6 +31,7 @@ export class BsToastElement extends HTMLElement {
     toastState.delete(this)
     contentState.delete(this)
     this.removeEventListener('hidden.bs.toast', this.destroy)
+    this.removeEventListener('click', this.handleClickClose)
   }
 
   show() {
@@ -38,6 +41,13 @@ export class BsToastElement extends HTMLElement {
     const toast = new Toast(element, this.options)
     toast.show()
     toastState.set(this, toast)
+  }
+
+  handleClickClose = (event: Event) => {
+    if (!(event.target instanceof HTMLButtonElement && event.target.classList.contains('btn-close'))) return
+
+    const toast = toastState.get(this)
+    toast?.hide()
   }
 
   destroy = () => {

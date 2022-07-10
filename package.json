@@ -1,6 +1,6 @@
 {
   "name": "@sonicgarden/bs-toast-element",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "module": "dist/bs-toast-element.es.js",
   "type": "module",
   "types": "types/index.d.ts",

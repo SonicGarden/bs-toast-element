@@ -4,6 +4,7 @@ export declare class BsToastElement extends HTMLElement {
     connectedCallback(): void;
     disconnectedCallback(): void;
     show(): void;
+    handleClickClose: (event: Event) => void;
     destroy: () => void;
     get bgClassName(): string;
     get options(): Partial<Toast.Options>;
