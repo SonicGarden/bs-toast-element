@@ -1,13 +1,14 @@
 {
   "name": "@sonicgarden/bs-toast-element",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "module": "dist/bs-toast-element.es.js",
   "type": "module",
   "types": "types/index.d.ts",
   "license": "MIT",
   "repository": "SonicGarden/bs-toast-element",
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
   "scripts": {
     "clean": "rm -rf dist && rm -rf types",
