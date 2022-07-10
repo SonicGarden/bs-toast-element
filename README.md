@@ -1,21 +1,17 @@
-# &lt;custom-element&gt; element
-
-Boilerplate for creating a custom element.
+# &lt;bs-toast&gt; element
 
 ## Installation
 
 ```
-$ npm install @github/custom-element-element
+$ yarn add https://github.com/SonicGarden/bs-toast-element.git#v0.1.0
 ```
 
 ## Usage
 
 ```js
-import '@github/custom-element-element'
-```
+import { openToast } from '@sonicgarden/bs-toast-element'
 
-```html
-<custom-element></custom-element>
+openToast('Hello, world', { bgColor: 'success', delay: 5000 })
 ```
 
 ## Browser support
@@ -33,8 +29,8 @@ Browsers without native [custom element support][support] require a [polyfill][]
 ## Development
 
 ```
-npm install
-npm test
+pnpm i
+pnpm start
 ```
 
 ## License

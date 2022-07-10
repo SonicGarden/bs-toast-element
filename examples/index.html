@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <title>custom-element demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   </head>
   <body>
-    <custom-element></custom-element>
-
     <script type="module">
       // import 'https://unpkg.com/@github/custom-element-boilerplate@latest/dist/custom-element.js'
-      import '../src/custom-element.ts'
+      import { openToast } from '../src'
+      openToast('Hello, world!', { bgColor: 'success', delay: 5000 })
+      openToast('Error!', { bgColor: 'danger', delay: 20000 })
     </script>
   </body>
 </html>
