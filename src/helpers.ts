@@ -16,6 +16,7 @@ const DEFAULT_POSITION = 'top-right'
 type OpenOptions = {
   color?: 'white' | 'black' | 'dark' | 'primary' | 'success' | 'info' | 'warning' | 'danger'
   bgColor?: 'success' | 'danger' | 'warning' | 'info' | 'primary' | 'secondary' | 'light' | 'dark'
+  opacity?: 75 | 50 | 25 | 10
   position?: Position
   delay?: number
   hideCloseButton?: boolean
@@ -29,6 +30,7 @@ export const openToast = (content: string | HTMLElement, options: OpenOptions = 
   if (options.color) toast.setAttribute('color', options.color)
   if (options.bgColor) toast.setAttribute('bg-color', options.bgColor)
   if (options.delay) toast.setAttribute('delay', options.delay.toString())
+  if (options.opacity) toast.setAttribute('opacity', options.opacity.toString())
   if (options.hideCloseButton) toast.setAttribute('hide-close-button', '')
 
   toast.content = content

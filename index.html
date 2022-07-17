@@ -22,7 +22,7 @@
         <h3>Success</h3>
 <pre class="bg-light text-dark">
 <code>
-  openToast('Hello, world!', { bgColor: 'success', delay: 5000 })
+  openToast('Hello, world!', { color: 'dark', bgColor: 'success', delay: 5000, opacity: 25 })
 </code>
 </pre>
         <button type="button" class="btn btn-success" id="show-success">Show</button>
@@ -85,7 +85,7 @@
         openToast('Hello, world!', { color: 'dark', bgColor: 'light', delay: 5000 })
       })
       document.querySelector('#show-success').addEventListener('click', () => {
-        openToast('Hello, world!', { bgColor: 'success', delay: 5000 })
+        openToast('Hello, world!', { color: 'dark', bgColor: 'success', delay: 5000, opacity: 25 })
       })
       document.querySelector('#show-danger').addEventListener('click', () => {
         openToast('Error!', { bgColor: 'danger', delay: 20000 })

@@ -10,6 +10,7 @@ export declare class BsToastElement extends HTMLElement {
     destroy: () => void;
     get bgColor(): string;
     get color(): string;
+    get opacity(): string | undefined;
     get hideCloseButton(): boolean;
     get options(): Partial<Toast.Options>;
     get content(): string | HTMLElement;

@@ -5,7 +5,7 @@ const toastState = new WeakMap<BsToastElement, Toast>()
 
 export class BsToastElement extends HTMLElement {
   static get observedAttributes(): string[] {
-    return ['color', 'bg-color', 'delay', 'hide-close-button']
+    return ['color', 'bg-color', 'opacity', 'delay', 'hide-close-button']
   }
 
   connectedCallback(): void {
@@ -27,7 +27,11 @@ export class BsToastElement extends HTMLElement {
     // eslint-disable-next-line github/no-inner-html
     this.innerHTML = `
       <div
-        class="toast align-items-center text-${this.color} bg-${this.bgColor}"
+        class="
+          toast align-items-center text-${this.color}
+          bg-${this.bgColor} ${this.opacity ? `bg-opacity-${this.opacity}` : ''}
+          ${this.hideCloseButton ? 'hide-close-button' : ''}
+        "
         role="alert"
         aria-live="assertive"
         aria-atomic="true"
@@ -85,6 +89,10 @@ export class BsToastElement extends HTMLElement {
 
   get color(): string {
     return this.getAttribute('color') ?? 'white'
+  }
+
+  get opacity(): string | undefined {
+    return this.getAttribute('opacity') ?? undefined
   }
 
   get hideCloseButton(): boolean {
