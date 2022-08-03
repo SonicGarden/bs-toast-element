@@ -1,7 +1,14 @@
 import Toast from 'bootstrap/js/dist/toast'
 
-const contentState = new WeakMap<BsToastElement, string | HTMLElement>()
-const toastState = new WeakMap<BsToastElement, Toast>()
+type State = {
+  toast?: Toast
+  content?: string | HTMLElement
+  hidden?: boolean
+}
+
+// const contentState = new WeakMap<BsToastElement, string | HTMLElement>()
+// const toastState = new WeakMap<BsToastElement, Toast>()
+const states = new WeakMap<BsToastElement, State>()
 
 export class BsToastElement extends HTMLElement {
   static get observedAttributes(): string[] {
@@ -17,8 +24,7 @@ export class BsToastElement extends HTMLElement {
   }
 
   disconnectedCallback() {
-    toastState.delete(this)
-    contentState.delete(this)
+    states.delete(this)
     this.removeEventListener('hidden.bs.toast', this.destroy)
     this.removeEventListener('click', this.handleClickClose)
   }
@@ -63,12 +69,15 @@ export class BsToastElement extends HTMLElement {
 
     const toast = new Toast(element, this.options)
     toast.show()
-    toastState.set(this, toast)
+    this.state = {...this.state, toast}
   }
 
   hide() {
-    const toast = toastState.get(this)
-    toast?.hide()
+    // NOTE: Calling twice results in an error.
+    if (this.state.hidden) return
+
+    this.state = {...this.state, hidden: true}
+    this.state.toast?.hide()
   }
 
   handleClickClose = (event: Event) => {
@@ -78,8 +87,7 @@ export class BsToastElement extends HTMLElement {
   }
 
   destroy = () => {
-    const toast = toastState.get(this)
-    toast?.dispose()
+    this.state.toast?.dispose()
     this.remove()
   }
 
@@ -105,11 +113,19 @@ export class BsToastElement extends HTMLElement {
   }
 
   get content(): string | HTMLElement {
-    return contentState.get(this) || ''
+    return this.state.content ?? ''
   }
 
   set content(value: string | HTMLElement) {
-    contentState.set(this, value)
+    this.state = {...this.state, content: value}
+  }
+
+  get state(): State {
+    return states.get(this) || {}
+  }
+
+  set state(value) {
+    states.set(this, value)
   }
 }
 

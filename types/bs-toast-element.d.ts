@@ -1,4 +1,9 @@
 import Toast from 'bootstrap/js/dist/toast';
+declare type State = {
+    toast?: Toast;
+    content?: string | HTMLElement;
+    hidden?: boolean;
+};
 export declare class BsToastElement extends HTMLElement {
     static get observedAttributes(): string[];
     connectedCallback(): void;
@@ -15,9 +20,12 @@ export declare class BsToastElement extends HTMLElement {
     get options(): Partial<Toast.Options>;
     get content(): string | HTMLElement;
     set content(value: string | HTMLElement);
+    get state(): State;
+    set state(value: State);
 }
 declare global {
     interface Window {
         BsToastElement: typeof BsToastElement;
     }
 }
+export {};
