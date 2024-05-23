@@ -1,5 +1,5 @@
 import Toast from 'bootstrap/js/dist/toast';
-declare type State = {
+type State = {
     toast?: Toast;
     content?: string | HTMLElement;
     hidden?: boolean;

@@ -6,7 +6,7 @@ const POSITION_CLASSES = {
   'top-right': ['top-0', 'end-0'],
   'bottom-left': ['bottom-0', 'start-0'],
   'bottom-center': ['bottom-0', 'start-50', 'translate-middle-x'],
-  'bottom-right': ['bottom-0', 'end-0']
+  'bottom-right': ['bottom-0', 'end-0'],
 }
 
 export type Position = keyof typeof POSITION_CLASSES
