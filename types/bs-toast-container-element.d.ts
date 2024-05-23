@@ -7,7 +7,7 @@ declare const POSITION_CLASSES: {
     'bottom-center': string[];
     'bottom-right': string[];
 };
-export declare type Position = keyof typeof POSITION_CLASSES;
+export type Position = keyof typeof POSITION_CLASSES;
 export declare class BsToastContainerElement extends HTMLElement {
     static get observedAttributes(): string[];
     connectedCallback(): void;

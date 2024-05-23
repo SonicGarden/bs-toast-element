@@ -31,7 +31,7 @@
     "vite": "^5.2.11"
   },
   "volta": {
-    "node": "16.16.0"
+    "node": "20.13.1"
   },
   "peerDependencies": {
     "bootstrap": "^5.3.3"

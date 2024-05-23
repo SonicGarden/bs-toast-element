@@ -1,5 +1,5 @@
 import type { Position } from './bs-toast-container-element';
-declare type OpenOptions = {
+type OpenOptions = {
     color?: 'white' | 'black' | 'dark' | 'primary' | 'success' | 'info' | 'warning' | 'danger';
     bgColor?: 'success' | 'danger' | 'warning' | 'info' | 'primary' | 'secondary' | 'light' | 'dark';
     opacity?: 75 | 50 | 25 | 10;
@@ -7,6 +7,6 @@ declare type OpenOptions = {
     delay?: number;
     hideCloseButton?: boolean;
 };
-declare type Hide = () => void;
+type Hide = () => void;
 export declare const openToast: (content: string | HTMLElement, options?: OpenOptions) => Hide;
 export {};
